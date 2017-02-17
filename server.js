@@ -2,6 +2,9 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs'); // we'll be logging to a file 
 
+// this is to make our app compatible with both heroku and locally. process.env stores all the available env variable available on our OS
+const port = process.env.PORT || 3000; // if the PORT env is not available, this will use port 3000
+
 // make a new express app
 var app = express();
 
@@ -95,6 +98,6 @@ app.get('/bad', (request, response) => {
 });
 
 // this will bind our application to a port on our machine
-app.listen(3000, () => {
-    console.log('Server is up on port 3000');
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}`);
 }); // 3000 is a common port for developing locally
