@@ -37,10 +37,10 @@ app.use((request, response, next) => {
 });
 
 // middleware example for when you don't want to call next() such as when your website is under maintenance
-app.use((request, response, next) => {
-    response.render('maintenance.hbs');
-    // we're not calling next() since we want the app to stop after displaying the maintenance page. 
-});
+// app.use((request, response, next) => {
+//     response.render('maintenance.hbs');
+//     // we're not calling next() since we want the app to stop after displaying the maintenance page. 
+// });
 
 // let's use middlware to serve up our web/html page without needing to configure the routes
 app.use(express.static(__dirname + '/public')) // dirname stores a path to your project's directory. in this case, it's the path of node-web-server
@@ -94,6 +94,13 @@ app.get('/about', (request, response) => {
 app.get('/bad', (request, response) => {
     response.send({
         errorMessage: 'Unable to process this request'
+    });
+});
+
+// challenge, create a project page that displays your github node projects
+app.get('/projects', (request, response) => {
+    response.render('projects.hbs', {
+        pageTitle: 'Projects'
     });
 });
 
